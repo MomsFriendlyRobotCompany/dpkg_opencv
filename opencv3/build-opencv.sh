@@ -20,7 +20,12 @@ echo "start ---------------"
 # -D PYTHON3_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
 #
 
-OPENCV_VERSION=3.4.0
+if [[ $# -ne 2 ]]; then
+  echo "Please supply an OpenCV version number"
+  echo "ex: ./build-opencv.sh 3.4.0"
+fi
+
+OPENCV_VERSION=$1
 CURRDIR=$(pwd)
 OPENCV_INSTALL_DIR="$CURRDIR/opencv-dpkg/usr/local"
 
