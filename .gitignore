@@ -1,0 +1,8 @@
+build/
+.DS_Store
+._*
+old.*
+old/
+*.pycy
+opencv3/opencv-3.*
+__pycache__
