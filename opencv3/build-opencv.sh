@@ -20,9 +20,16 @@ echo "start ---------------"
 # -D PYTHON3_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
 #
 
-if [[ $# -ne 2 ]]; then
+# check if we are root
+if [ "$EUID" -ne 0 ] ; then
+  echo "Please run as root"
+  exit 1
+fi
+
+if [[ $# -ne 1 ]]; then
   echo "Please supply an OpenCV version number"
   echo "ex: ./build-opencv.sh 3.4.0"
+  exit 1
 fi
 
 OPENCV_VERSION=$1
