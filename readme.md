@@ -1,4 +1,4 @@
-# dpkg OpenCV
+# dpkg [OpenCV](https://github.com/opencv/opencv)
 
 Unfortunately raspbian has old packages and the linux distro model is to move
 slow and not update things. Unfortunately linux homebrew doesn't always work
@@ -66,7 +66,11 @@ Make sure to run update opencv script so you have the right libraries installed 
 
 # Licenses
 
-## MIT License
+## BSD License for OpenCV
+
+See its license file
+
+## MIT License for build scripts
 
 Copyright (c) 2016 Kevin
 
@@ -88,6 +92,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
- ---
+## Documentation
 
  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" align="middle"/></a><br />This documentation is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
