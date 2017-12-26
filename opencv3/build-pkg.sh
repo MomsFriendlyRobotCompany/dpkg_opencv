@@ -7,6 +7,9 @@ fi
 
 VERSION=$1
 
-dpkg-deb -v --build opencv-dpkg libopencv${VERSION}
+echo "building OpenCV ${VERSION}"
+dpkg-deb -v --build opencv-dpkg libopencv${VERSION}.deb
 
-dpkg-deb --info libopencv${VERSION}
+echo ""
+echo "reading debian package: \n"
+dpkg-deb --info libopencv${VERSION}.deb
