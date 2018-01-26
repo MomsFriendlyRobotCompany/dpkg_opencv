@@ -27,10 +27,15 @@ slow and not update things. Unfortunately linux homebrew doesn't always work
 ## Build the Package
 
 You should be able to use the package already built in this
-repo, but if you want/need to build it:
+repo, but if you want/need to build it, do:
 
-	./build-opencv.sh
+	./update-opencv.sh
+	./build-opencv.sh 3.4.0
 	./build-pkg.sh
+
+Note, you pass the version number to `build-opencv.sh` and it gets appended
+onto the packages name. After, running the above commands, you should 
+now have a shiny new debian package.
 
 ## Check
 
