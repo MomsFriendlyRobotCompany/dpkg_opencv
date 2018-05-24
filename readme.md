@@ -24,6 +24,31 @@ slow and not update things. Unfortunately linux homebrew doesn't always work
 
 **postrm** – this script typically modifies links or other files associated with foo, and/or removes files created by the package.
 
+## Raspberry Pi Camara with Video4Linux
+
+One way to use the Raspberry Pi camera connected to the ribbon cable with OpenCV is the picamera module. You have to set it up to grab images to numpy.array then map the array to OpenCV Mat.
+
+To use the standard grabbing loop cv2.VideoCapture(0)  with raspicam the Video4Linux driver is needed.
+
+1. Check prerequisites (with sudo raspi-config):
+    1. Enable the camera
+    1. Set large memory for gpu_mem (In Advance Options > Memmory Split set 128 MB)
+1. Install v4l library from repository: `sudo apt-get -y install libv4l-dev v4l-utils`
+1. Enable the kernel module: `sudo modprobe bcm2835-v4l2`
+1. Test the module with: `v4l2-ctl --list-devices`
+1. You should receive something like this: 
+	```bash
+	mmal service 16.1 (platform:bcm2835-v4l2):
+		 /dev/video0
+	```
+1. Test: try to grab a single frame and check for the file  `test.jpg`:
+	```bash
+	v4l2-ctl --set-fmt-video=width=800,height=600,pixelformat=3
+	v4l2-ctl --stream-mmap=3 --stream-count=1 --stream-to=./test.jpg
+	```
+1. Info: check all available controls like brightness, contrast, etc with: `v4l2-ctl --list-ctrls`
+
+
 ## Build the Package
 
 You should be able to use the package already built in this
@@ -67,7 +92,8 @@ Make sure to run update opencv script so you have the right libraries installed 
 
 ## References
 
- [Package setup details](https://www.leaseweb.com/labs/2013/06/creating-custom-debian-packages/)
+-[Package setup details](https://www.leaseweb.com/labs/2013/06/creating-custom-debian-packages/)
+- [Install OpenCV 3.2 Python/C++ on Raspberry PI](http://pklab.net/index.php?lang=EN&id=392)
 
 # Licenses
 
