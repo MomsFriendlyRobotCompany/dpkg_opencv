@@ -24,11 +24,11 @@ slow and not update things. Unfortunately linux homebrew doesn't always work
 
 **postrm** – this script typically modifies links or other files associated with foo, and/or removes files created by the package.
 
-## Raspberry Pi Camara with Video4Linux
+## Test Raspberry Pi Camara with Video4Linux
 
-One way to use the Raspberry Pi camera connected to the ribbon cable with OpenCV is the picamera module. You have to set it up to grab images to numpy.array then map the array to OpenCV Mat.
+One way to use the Raspberry Pi camera connected to the ribbon cable with OpenCV is the picamera module. You have to set it up to grab images to numpy.array then map the array to OpenCV Mat. But that has a completely different interface. Instead let's setup the Pi Camera to use the standard `cv2.VideoCapture(0)`.
 
-To use the standard grabbing loop cv2.VideoCapture(0)  with raspicam the Video4Linux driver is needed.
+To use the standard grabbing loop `cv2.VideoCapture(0)`  with raspicam the Video4Linux driver is needed.
 
 1. Check prerequisites (with sudo raspi-config):
     1. Enable the camera
@@ -47,6 +47,8 @@ To use the standard grabbing loop cv2.VideoCapture(0)  with raspicam the Video4L
 	v4l2-ctl --stream-mmap=3 --stream-count=1 --stream-to=./test.jpg
 	```
 1. Info: check all available controls like brightness, contrast, etc with: `v4l2-ctl --list-ctrls`
+
+If all it works well add the module name `bcm2835-v4l2` to the list of modules loaded at boot time in `/etc/modules-load.d/modules.conf`
 
 
 ## Build the Package
