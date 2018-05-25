@@ -4,7 +4,6 @@ build/
 old.*
 old/
 *.pycy
-opencv3/opencv-3.*
-opencv3/opencv-dpkg
+opencv3/opencv-*
 __pycache__
 *.tar.gz
