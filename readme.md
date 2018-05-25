@@ -48,10 +48,11 @@ To use the standard grabbing loop `cv2.VideoCapture(0)`  with raspicam the Video
 	```
 1. Info: check all available controls like brightness, contrast, etc with: `v4l2-ctl --list-ctrls`
 
-If all it works well add the module name `bcm2835-v4l2` to the list of modules loaded at boot time in `/etc/modules-load.d/modules.conf`
+**If all it works** well, add the module name `bcm2835-v4l2` to the list of modules 
+loaded at boot time in `/etc/modules-load.d/modules.conf`.
 
 
-## Build the Package
+# Build the Package
 
 Get the current OpenCV number from: https://github.com/opencv/opencv/releases
 
@@ -87,7 +88,7 @@ pi@mario opencv3 $ dpkg-deb --info libopencv3.4.0.deb
  Description: Kevins computer vision library
  ```
 
-## Install
+# Install the Package
 
 Make sure to run update opencv script so you have the right libraries installed and setup.
 
