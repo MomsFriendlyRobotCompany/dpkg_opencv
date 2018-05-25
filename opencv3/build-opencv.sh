@@ -11,7 +11,6 @@
 
 # https://github.com/opencv/opencv/issues/7744
 
-echo "start ---------------"
 
 # -D PYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
 # -D PYTHON_INCLUDE_DIR2=$(python3 -c "from os.path import dirname; from distutils.sysconfig import get_config_h_filename; print(dirname(get_config_h_filename()))") \
@@ -31,6 +30,13 @@ if [[ $# -ne 1 ]]; then
   echo "ex: ./build-opencv.sh 3.4.0"
   exit 1
 fi
+
+
+echo "start ---------------"
+
+rm -fr opencv-dpkg
+
+python3folder=python3.5
 
 OPENCV_VERSION=$1
 CURRDIR=$(pwd)
@@ -76,7 +82,7 @@ PY3INCLUDE=$(python3 -c "from distutils.sysconfig import get_python_inc; print(g
 PY3EXE=$(which python3)
 PY3NUMPY=$(python3 -c "import numpy; print(numpy.get_include())")
 #PY3PKGS=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
-PY3PKGS=$OPENCV_INSTALL_DIR/lib/python3/dist-packages
+PY3PKGS=$OPENCV_INSTALL_DIR/lib/${python3folder}/dist-packages
 
 if [ ! -f $OPENCV_VERSION.tar.gz ]; then
   wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.tar.gz
@@ -100,6 +106,13 @@ cd opencv-$OPENCV_VERSION/build
 
 cmake -DCMAKE_BUILD_TYPE=RELEASE \
 -DCMAKE_INSTALL_PREFIX=$OPENCV_INSTALL_DIR \
+-D BUILD_WITH_DEBUG_INFO=OFF \
+-D BUILD_DOCS=OFF \
+-D BUILD_EXAMPLES=OFF \
+-D BUILD_TESTS=OFF \
+-D BUILD_opencv_ts=OFF \
+-D ENABLE_NEON=ON \
+-D WITH_LIBV4L=ON \
 -DBUILD_opencv_python2=ON \
 -DPYTHON2_PACKAGES_PATH=$PY2PKGS \
 -DPYTHON2_LIBRARY=$PY2LIB \

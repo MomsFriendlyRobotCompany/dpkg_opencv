@@ -1,7 +1,0 @@
-Package: opencv
-Architecture: all
-Maintainer: Kevin
-Depends: debconf (>= 0.5.00)
-Priority: optional
-Version: 3.4.0
-Description: Kevins computer vision library

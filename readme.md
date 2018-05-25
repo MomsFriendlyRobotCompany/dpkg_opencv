@@ -36,7 +36,7 @@ To use the standard grabbing loop `cv2.VideoCapture(0)`  with raspicam the Video
 1. Install v4l library from repository: `sudo apt-get -y install libv4l-dev v4l-utils`
 1. Enable the kernel module: `sudo modprobe bcm2835-v4l2`
 1. Test the module with: `v4l2-ctl --list-devices`
-1. You should receive something like this: 
+1. You should receive something like this:
 	```bash
 	mmal service 16.1 (platform:bcm2835-v4l2):
 		 /dev/video0
@@ -53,6 +53,8 @@ If all it works well add the module name `bcm2835-v4l2` to the list of modules l
 
 ## Build the Package
 
+Get the current OpenCV number from: https://github.com/opencv/opencv/releases
+
 You should be able to use the package already built in this
 repo, but if you want/need to build it, do:
 
@@ -61,7 +63,7 @@ repo, but if you want/need to build it, do:
 	./build-pkg.sh
 
 Note, you pass the version number to `build-opencv.sh` and it gets appended
-onto the packages name. After, running the above commands, you should 
+onto the packages name. After, running the above commands, you should
 now have a shiny new debian package.
 
 ## Check
@@ -69,7 +71,7 @@ now have a shiny new debian package.
 You can double check your package with: `dpkg-deb --info <deb file>`
 
 ```bash
-pi@mario opencv3 $ dpkg-deb --info libopencv3.4.0.deb 
+pi@mario opencv3 $ dpkg-deb --info libopencv3.4.0.deb
  new debian package, version 2.0.
  size 7369108 bytes: control archive=651 bytes.
      159 bytes,     7 lines   *  control              

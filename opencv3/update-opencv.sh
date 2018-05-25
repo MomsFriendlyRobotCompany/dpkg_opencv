@@ -46,6 +46,7 @@ echo ""
 chown -R pi:pi /home/pi
 chown -R pi:pi /usr/local
 chown -R pi:pi /usr/lib/python2.7/dist-packages/
+chown -R pi:pi /usr/lib/python3.*/dist-packages/
 
 echo ""
 echo "============================="
