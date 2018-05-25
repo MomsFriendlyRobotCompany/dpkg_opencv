@@ -60,11 +60,11 @@ repo, but if you want/need to build it, do:
 
 	./update-opencv.sh
 	./build-opencv.sh 3.4.0
-	./build-pkg.sh
+	./build-pkg.sh 3.4.0
 
-Note, you pass the version number to `build-opencv.sh` and it gets appended
-onto the packages name. After, running the above commands, you should
-now have a shiny new debian package.
+Note, you pass the version number to `build-opencv.sh` so it downloads the version you want
+and you pass it `build-pkg.sh` so it gets appended onto the packages name. After, running 
+the above commands, you should now have a shiny new debian package.
 
 ## Check
 
