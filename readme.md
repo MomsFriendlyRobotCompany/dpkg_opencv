@@ -96,8 +96,8 @@ Make sure to run update opencv script so you have the right libraries installed 
 
 ## References
 
--[Package setup details](https://www.leaseweb.com/labs/2013/06/creating-custom-debian-packages/)
-- [Install OpenCV 3.2 Python/C++ on Raspberry PI](http://pklab.net/index.php?lang=EN&id=392)
+- [Package setup details](https://www.leaseweb.com/labs/2013/06/creating-custom-debian-packages/)
+- [Install OpenCV 3.2 Python/C++ on Raspberry PI using video4linux interface](http://pklab.net/index.php?lang=EN&id=392)
 
 # Licenses
 
