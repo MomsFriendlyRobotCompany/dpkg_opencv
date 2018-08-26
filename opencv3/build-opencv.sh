@@ -86,6 +86,7 @@ PY3NUMPY=$(python3 -c "import numpy; print(numpy.get_include())")
 PY3PKGS=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
 #PY3PKGS=$OPENCV_INSTALL_DIR/lib/${python3folder}/dist-packages
 
+# this is in a wrong place
 PY3LIB="/home/pi/.local/lib/libpython3.7m.a"
 
 if [ ! -f opencv-$OPENCV_VERSION.tar.gz ]; then

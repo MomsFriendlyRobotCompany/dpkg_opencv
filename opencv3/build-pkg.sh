@@ -8,12 +8,12 @@ fi
 
 VERSION=$1
 
-mkdir -p ./opencv-dpkg
+# mkdir -p ./opencv-dpkg
 rm -fr ./opencv-dpkg/DEBIAN
 mkdir -p ./opencv-dpkg/DEBIAN
 
 cat <<EOF >./opencv-dpkg/DEBIAN/control
-Package: opencv
+Package: kevin-opencv
 Architecture: all
 Maintainer: Kevin
 Depends: debconf (>= 0.5.00)
@@ -24,7 +24,7 @@ EOF
 
 cat <<EOF >./opencv-dpkg/DEBIAN/copyright
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: opencv
+Upstream-Name: kevin-opencv
 Upstream-Contact: Name, <email@address>
 
 Files: *
@@ -36,7 +36,7 @@ Unless there is a it can be found in /usr/share/common-licenses
 EOF
 
 cat <<EOF >./opencv-dpkg/DEBIAN/install
-usr/*
+/home/pi/.local/*
 EOF
 
 cat <<EOF >./opencv-dpkg/DEBIAN/postinst
@@ -48,6 +48,11 @@ echo "============================="
 echo "| Linking libraries         |"
 echo "============================="
 echo ""
+
+cat <<STOP >/etc/ld.so.conf.d/opencv.conf
+/home/pi/.local/lib
+STOP
+
 ldconfig
 
 echo ""
@@ -57,9 +62,6 @@ echo "============================="
 echo ""
 
 chown -R pi:pi /home/pi
-chown -R pi:pi /usr/local
-chown -R pi:pi /usr/lib/python2.7/dist-packages/
-chown -R pi:pi /usr/lib/python3.*/
 
 echo ""
 echo "============================="
@@ -72,9 +74,9 @@ chmod 0755 ./opencv-dpkg/DEBIAN/*
 
 echo " > building OpenCV ${VERSION}"
 echo ""
-dpkg-deb -v --build opencv-dpkg libopencv-${VERSION}.deb
+dpkg-deb -v --build opencv-dpkg kevin-opencv-${VERSION}.deb
 
 echo ""
 echo " > reading debian package:"
 echo ""
-dpkg-deb --info libopencv-${VERSION}.deb
+dpkg-deb --info kevin-opencv-${VERSION}.deb
