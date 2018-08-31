@@ -9,7 +9,7 @@ slow and not update things. Unfortunately linux homebrew doesn't always work
 This package installs to `/home/pi/.local` and doesn't interact with normal debian
 packages from Raspbian. You can install by:
 
-1. You will need to install my `dpkg_python3` firs
+1. You will need to install my [`dpkg_python3`](https://github.com/MomsFriendlyRobotCompany/dpkg_python3) first
 1. Install package with: `sudo dpkg -i kevin-opencv-3.x.x.deb` where 3.x.x is the
 current version
 
