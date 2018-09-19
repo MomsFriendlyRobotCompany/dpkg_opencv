@@ -120,9 +120,12 @@ cd opencv-$OPENCV_VERSION/build
 
 # https://github.com/opencv/opencv/blob/master/CMakeLists.txt
 # I have disabled the gui with qt/gtk=off
+#
+# add this back in for contrib
+# -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-$OPENCV_VERSION/modules \
+
 cmake -DCMAKE_BUILD_TYPE=RELEASE \
 -DCMAKE_INSTALL_PREFIX=$OPENCV_INSTALL_DIR \
--D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-$OPENCV_VERSION/modules \
 -D OPENCV_ENABLE_NONFREE=ON \
 -D BUILD_WITH_DEBUG_INFO=OFF \
 -D BUILD_DOCS=OFF \
