@@ -70,6 +70,10 @@ echo "============================="
 echo ""
 EOF
 
+echo " > cleaning up hidden files"
+find . -type f -name '.DS_Store' -exec rm {} +
+find . -type f -name '._.*' -exec rm {} +
+
 chmod 0755 ./opencv-dpkg/DEBIAN/*
 
 echo " > building OpenCV ${VERSION}"
