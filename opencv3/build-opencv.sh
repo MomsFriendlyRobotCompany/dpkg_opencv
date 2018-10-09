@@ -91,7 +91,7 @@ PY3LIB="/home/pi/.local/lib/libpython3.7m.a"
 
 if [ ! -f opencv-$OPENCV_VERSION.tar.gz ]; then
   wget -O opencv-$OPENCV_VERSION.tar.gz https://github.com/opencv/opencv/archive/$OPENCV_VERSION.tar.gz
-  wget -O opencv_contrib-$OPENCV_VERSION.tar.gz https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.tar.gz
+  # wget -O opencv_contrib-$OPENCV_VERSION.tar.gz https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.tar.gz
 else
   echo ""
   echo "<<< Using previously downloaded file >>>"
@@ -103,11 +103,11 @@ if [ -d opencv-$OPENCV_VERSION ]; then
   echo "*** Deleting opencv-${OPENCV_VERSION} ***"
   sleep 1
   rm -fr opencv-$OPENCV_VERSION
-  rm -fr opencv_contrib-$OPENCV_VERSION
+  # rm -fr opencv_contrib-$OPENCV_VERSION
 fi
 
 # setup things
-tar -xzf opencv_contrib-$OPENCV_VERSION.tar.gz
+# tar -xzf opencv_contrib-$OPENCV_VERSION.tar.gz
 tar -xzf opencv-$OPENCV_VERSION.tar.gz
 mkdir opencv-$OPENCV_VERSION/build
 cd opencv-$OPENCV_VERSION/build

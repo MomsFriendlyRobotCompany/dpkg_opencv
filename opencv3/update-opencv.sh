@@ -13,16 +13,23 @@ echo "============================="
 echo ""
 
 apt-get update
+sudo apt -y remove x264 libx264-dev
+apt-get autoremove -y
+
 apt-get -y upgrade
-apt-get -y install build-essential cmake git pkg-config swig
+apt-get autoremove -y
+
+apt-get -y install build-essential cmake git pkg-config swig yasm
 apt-get -y install libeigen3-dev
 apt-get -y install libtbb2 libtbb-dev
 apt-get -y install ffmpeg
-apt-get -y install libjpeg-dev libtiff-dev libjasper-dev libpng-dev libpng-tools
-apt-get -y install libv4l-dev v4l-utils
+apt-get -y install libjpeg8-dev libtiff-dev libjasper-dev libpng-dev libpng-tools
+apt-get -y install libv4l-dev v4l-utils x264
+apt -y install libavresample-dev
 apt-get -y install libavcodec-dev libavformat-dev libswscale-dev
-apt-get -y --force-yes install libxvidcore-dev libx264-dev
+# apt-get -y --force-yes install libxvidcore-dev libx264-dev
 apt-get -y install libatlas-base-dev gfortran
+apt -y install libprotobuf-dev protobuf-compiler
 # apt-get -y install python2.7-dev
 # apt-get -y install python3-dev
 # apt-get -y install libgtk2.0-dev
