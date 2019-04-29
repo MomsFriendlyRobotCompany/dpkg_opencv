@@ -36,13 +36,14 @@ echo "start ---------------"
 
 OPENCV_VERSION=$1
 CURRDIR=$(pwd)
-# OPENCV_INSTALL_DIR="$CURRDIR/opencv-dpkg/usr/local"
-OPENCV_INSTALL_DIR="$CURRDIR/opencv-dpkg/home/pi/.local"
+OPENCV_INSTALL_DIR="$CURRDIR/opencv-dpkg/usr/local"
+# OPENCV_INSTALL_DIR="$CURRDIR/opencv-dpkg/home/pi/.local"
 
 rm -fr  ${OPENCV_INSTALL_DIR}/*
 
 # python is installed here
-export  PATH=/home/pi/.local/bin:$PATH
+# export  PATH=/home/pi/.local/bin:$PATH
+source /home/pi/.venv/bin/activate
 
 echo ""
 echo "-------------------------------------------------"
@@ -51,24 +52,24 @@ echo "-------------------------------------------------"
 echo ""
 
 
-if [[ "$OSTYPE" == "linux-gnu" ]] || [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
-  # update system
-  ./update-opencv.sh
-  apt-get autoremove -y
-fi
+# if [[ "$OSTYPE" == "linux-gnu" ]] || [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
+#   # update system
+#   ./update-opencv.sh
+#   apt-get autoremove -y
+# fi
 
-echo "----------------------------"
-echo "Updating things python libs"
-echo "----------------------------"
+# echo "----------------------------"
+# echo "Updating things python libs"
+# echo "----------------------------"
 
 #pip install -U pip setuptools wheel
 #pip install -U numpy PyYAML matplotlib simplejson
 
-pip3 install -U pip setuptools wheel
-pip3 install -U numpy PyYAML matplotlib simplejson
+# pip3 install -U pip setuptools wheel
+# pip3 install -U numpy PyYAML matplotlib simplejson
 
 # fix permissions from above operations
-chown -R pi:pi /home/pi/.local
+# chown -R pi:pi /home/pi/.local
 
 # python 2
 #PY2LIB=$(python -c "from distutils.sysconfig import get_config_var;from os.path import dirname,join ; print(join(dirname(get_config_var('LIBPC')),get_config_var('LDLIBRARY')))")
@@ -87,7 +88,8 @@ PY3PKGS=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_
 #PY3PKGS=$OPENCV_INSTALL_DIR/lib/${python3folder}/dist-packages
 
 # this is in a wrong place
-PY3LIB="/home/pi/.local/lib/libpython3.7m.a"
+# PY3LIB="/home/pi/.local/lib/libpython3.7m.a"
+PY3LIB="/usr/lib/arm-linux-gnueabihf/libpython3.7m.so"
 
 if [ ! -f opencv-$OPENCV_VERSION.tar.gz ]; then
   wget -O opencv-$OPENCV_VERSION.tar.gz https://github.com/opencv/opencv/archive/$OPENCV_VERSION.tar.gz
@@ -143,6 +145,7 @@ cmake -DCMAKE_BUILD_TYPE=RELEASE \
 -D WITH_GTK=OFF \
 -DBUILD_opencv_python2=OFF \
 -DBUILD_opencv_python3=ON \
+-DWITH_PROTOBUF=OFF \
 -DPYTHON3_PACKAGES_PATH=$PY3PKGS \
 -DPYTHON3_LIBRARY=$PY3LIB \
 -DPYTHON3_INCLUDE_DIR=$PY3INCLUDE \
@@ -157,6 +160,9 @@ make install
 # python library never gets insalled to the correct place
 # FIXME: handle other versions of python
 PYINSTALL="${OPENCV_INSTALL_DIR}/lib/python3.7/site-packages"
-mkdir ${OPENCV_INSTALL_DIR}/lib/python3.7
-mkdir ${OPENCV_INSTALL_DIR}/lib/python3.7/site-packages
+mkdir -p opencv-dpkg
+mkdir -p opencv-dpkg/usr
+mkdir -p opencv-dpkg/usr/local
+mkdir -p ${OPENCV_INSTALL_DIR}/lib/python3.7
+mkdir -p ${OPENCV_INSTALL_DIR}/lib/python3.7/site-packages
 cp -f lib/python3/*.so ${PYINSTALL}

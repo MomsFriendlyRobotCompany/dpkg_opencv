@@ -36,7 +36,7 @@ Unless there is a it can be found in /usr/share/common-licenses
 EOF
 
 cat <<EOF >./opencv-dpkg/DEBIAN/install
-/home/pi/.local/*
+/usr/local/*
 EOF
 
 cat <<EOF >./opencv-dpkg/DEBIAN/postinst
@@ -50,7 +50,7 @@ echo "============================="
 echo ""
 
 cat <<STOP >/etc/ld.so.conf.d/opencv.conf
-/home/pi/.local/lib
+/usr/local/lib
 STOP
 
 ldconfig
