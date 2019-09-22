@@ -1,0 +1,13 @@
+FROM balenalib/raspberrypi3-ubuntu:latest-build
+
+ENV VERSION=4.1.0
+
+WORKDIR /opt/opencv
+
+RUN useradd -ms /bin/bash pi
+
+RUN ./update-opencv.sh \
+    && ./build-opencv.sh ${VERSION} \
+    && ./build-pkg.sh ${VERSION}
+    
+CMD ["/bin/bash"]
