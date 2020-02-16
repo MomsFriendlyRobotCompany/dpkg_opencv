@@ -44,9 +44,9 @@ if [[ ${CMD} == "run" ]]; then
     echo ">> ${DIR}/${NAME}"
     docker run \
     --name ${NAME} \
-    -v ${DIR}/${NAME}:/opt/opencv/tmp \
+    -v ${DIR}/${NAME}:/done \
     walchko/${NAME}:${VERSION} bash
-    # stop
+    stop
 
 elif [[ ${CMD} == "bash" ]]; then
     echo ">> launching a bash command line to the container"
@@ -74,7 +74,8 @@ elif [[ ${CMD} == "status" ]]; then
 
 elif [[ ${CMD} == "clean" ]]; then
     echo ">> Let's clean this up"
-    docker volume rm $(docker volume ls -qf dangling=true) # delete orphaned/dangling volumes
+    # stop
+    # docker volume rm $(docker volume ls -qf dangling=true) # delete orphaned/dangling volumes
     docker rmi $(docker images -q -f dangling=true) # delete dangling/untagged images
     docker rm $(docker ps -a -q) # remove all stopped containers
 

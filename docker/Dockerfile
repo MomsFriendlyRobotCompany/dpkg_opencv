@@ -111,7 +111,12 @@ RUN chmod a+x build-pkg.sh \
 # ENTRYPOINT ["./build-pkg.sh"]
 # RUN ["./build-pkg.sh", $VERSION]
 
-run mkdir tmp \
-    && mv kevin-opencv-$VERSION.deb tmp/
+VOLUME /done
+
+# to get the deb file
+# docker run -ti -v `pwd`/pi-opencv:/done <image id> bash
+
+# RUN mkdir -p /done \
+#     && cp kevin-opencv-*.deb /done
 
 CMD ["/bin/bash"]
