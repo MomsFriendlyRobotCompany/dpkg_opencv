@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dpk_opencv:
+    build: .
+    image: walchko/opencv:4.2.0
+    container_name: opencv
+    volumes:
+      - ./:/done
