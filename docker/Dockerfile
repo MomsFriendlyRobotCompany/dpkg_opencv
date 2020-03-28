@@ -127,8 +127,8 @@ RUN mkdir -p opencv-$VERSION/build \
     -D WITH_OPENEXR=OFF \
     -D WITH_PROTOBUF=OFF \
     -D WITH_WEBP=OFF \
-    -D WITH_OPENCL=OFF \
-    -D WITH_OPENGL=ON \
+    -D WITH_OPENCL=ON \
+    -D WITH_OPENGL=OFF \
     -D WITH_TIFF=ON \
     -D WITH_JPEG=ON \
     -D WITH_PNG=ON \
@@ -137,8 +137,8 @@ RUN mkdir -p opencv-$VERSION/build \
 
 
 COPY build-pkg.sh .
-# RUN chmod a+x build-pkg.sh \
-#     && ./build-pkg.sh $VERSION
+RUN chmod a+x build-pkg.sh \
+    && ./build-pkg.sh $VERSION
 
 
 # ENTRYPOINT ["./build-pkg.sh"]
@@ -149,7 +149,7 @@ COPY build-pkg.sh .
 # to get the deb file
 # docker run -ti -v `pwd`/pi-opencv:/done <image id> bash
 
-# RUN mkdir -p /done \
-#     && cp kevin-opencv-*.deb /done
+RUN mkdir -p /done \
+    && cp kevin-opencv-*.deb /done
 
 CMD ["/bin/bash"]
